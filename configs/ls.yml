@@ -1,0 +1,7 @@
+---
+root:
+    - match: '(^[dprwx-]{10})'
+      replace: '{blue}\1{reset}'
+      continue: true
+    - match: '(\d{2}:\d{2})'
+      replace: '{yellow}\1{reset}'
