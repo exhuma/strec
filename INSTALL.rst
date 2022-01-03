@@ -1,1 +1,1 @@
-See docs/INSTALL.rst
+See docs/installation.rst

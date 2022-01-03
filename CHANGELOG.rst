@@ -1,6 +1,18 @@
 Changelog
 =========
 
+v2.0.0
+------
+
+* Project renamed from ``grc`` to ``strec`` to avoid confusion with grc_.
+* Support for "grc"-style configs. See `the documentation <docs>`_ for more
+  details including an important difference.
+* Moderniation of documentation
+* [internal] Code refactoring and workspace cleanup
+
+.. _grc: https://github.com/garabik/grc
+.. _docs: https://strec.readthedocs.io/en/latest/
+
 v1.0.0.post3
 ------------
 

@@ -19,14 +19,8 @@ def get_version():
     return data["VERSION"]
 
 
-PACKAGE = "strec"
-NAME = "strec"
-DESCRIPTION = "Generic Coloriser"
 with open("docs/README.rst") as fptr:
     LONG_DESCRIPTION = fptr.read()
-AUTHOR = "Michel Albert"
-AUTHOR_EMAIL = "michel@albert.lu"
-VERSION = get_version()
 
 if os.geteuid() == 0:
     CONF_TARGET = "/usr/share/strec/conf.d"
@@ -40,13 +34,13 @@ if not exists(CONF_TARGET):
     print("Created folder for config files: %r" % CONF_TARGET)
 
 setup(
-    name=NAME,
-    version=VERSION,
-    description=DESCRIPTION,
+    name="strec",
+    version=get_version(),
+    description="Generic Coloriser",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/x-rst",
-    author=AUTHOR,
-    author_email=AUTHOR_EMAIL,
+    author="Michel Albert",
+    author_email="michel@albert.lu",
     license="GPL",
     install_requires=[
         "blessings",
