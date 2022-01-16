@@ -43,7 +43,6 @@ def test_color_list():
     assert result == expected
 
 
-@pytest.mark.skip()
 def test_color_list2():
     """
     What happens if the beginning of the string does not start with a matching
@@ -54,7 +53,7 @@ def test_color_list2():
     output = StringIO()
     rules = [
         garabik.Rule(
-            re.compile(r"beginning \b(hello) something (world)\b"),
+            re.compile(r"this is a \b(hello) something (world)\b"),
             ["blue", "red"],
         ),
     ]
@@ -368,98 +367,6 @@ def test_unmatched_regex_group():
     parser = garabik.GarabikColorizer(rules, output, Colors)
     parser.feed(line)
     assert output.getvalue() == expected
-
-
-@pytest.mark.skip()
-def test_something():  # TODO: rename test
-    rules = list(
-        garabik.parse_config(
-            dedent(
-                r"""
-                regexp=(-|[a-z])(r)
-                colours=blue,yellow
-                """
-            )
-        )
-    )
-    line = "-rw-rwar--\n"
-    expected = "<blue>-<reset><yellow>r<reset>w<blue>-<reset><yellow>r<reset>w<blue>a<reset><yellow>r<reset>--\n"
-    output = StringIO()
-    parser = garabik.GarabikColorizer(rules, output, Colors)
-    parser.feed(line)
-    print("Result:", repr(output.getvalue()))
-    assert output.getvalue() == expected
-    1 / 0
-
-
-@pytest.mark.skip()
-def test_else():  # TODO: rename test
-    rules = list(
-        # XXX garabik.parse_config(
-        # XXX     dedent(
-        # XXX         r"""
-        # XXX         regexp=([A-Z][a-z]{2})\s([ 1-3]\d)\s(?:([0-2]?\d):([0-5]\d)(?=[\s,]|$)|\s*(\d{4}))
-        # XXX         colours=unchanged,cyan,cyan,cyan,cyan,bold magenta
-        # XXX         """
-        # XXX     )
-        # XXX )
-        garabik.parse_config(
-            dedent(
-                r"""
-                regexp=(drwx)(rwx)r-x
-                colours=cyan,yellow
-                ----
-                regexp=(?=(streamer) (streamer) (4096))
-                colours=unchanged,red,blue
-                """
-            )
-        )
-    )
-    line = "drwxrwxr-x 4 streamer streamer 4096 Nov 16 09:20 strec\n"
-    output = StringIO()
-    parser = garabik.GarabikColorizer(rules, output, Colors)
-    parser.feed(line)
-    print("Result:", repr(output.getvalue()))
-    1 / 0
-
-
-@pytest.mark.skip()
-def test_another():  # TODO: rename test
-    rules = list(
-        garabik.parse_config(
-            dedent(
-                r"""
-                regexp=([A-Z][a-z]{2})\s([ 1-3]\d)\s(?:([0-2]?\d):([0-5]\d)(?=[\s,]|$)|\s*(\d{4}))
-                colours=cyan,cyan,cyan,cyan,bold magenta
-                """
-            )
-        )
-    )
-    line1 = "drwxrwxr-x 4 streamer streamer 4096 Nov 16  1996 strec\n"
-    line2 = "drwxrwxr-x 4 streamer streamer 4096 Nov 16 09:20 strec\n"
-    expected = (
-        "drwxrwxr-x 4 streamer streamer 4096 "
-        "<cyan>Nov<reset> <cyan>16<reset> <cyan>09<reset>:<cyan>20<reset> "
-        "strec\n"
-    )
-    output = StringIO()
-    parser = garabik.GarabikColorizer(rules, output, Colors)
-    parser.feed(line2)
-    print("Result:", repr(output.getvalue()))
-    assert output.getvalue() == expected
-    1 / 0
-
-
-@pytest.mark.skip("TODO")
-def test_upstream_ls():
-    line = "drwxrwxr-x 3 streamer streamer 4096 Nov  7 17:52 docs\n"
-    with open("conf.ls") as fptr:
-        rules = garabik.parse_config(fptr.read())
-    output = StringIO()
-    parser = garabik.GarabikColorizer(rules, output, Colors)
-    parser.feed(line)
-    print(output.getvalue())
-    1 / 0
 
 
 def test_lookbehind():
