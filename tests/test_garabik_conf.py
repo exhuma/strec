@@ -2,25 +2,8 @@ import re
 from io import StringIO
 from textwrap import dedent
 
-import pytest
-
 import strec.colorizers.garabik as garabik
-
-
-class Colors:
-    @staticmethod
-    def get(name: str) -> str:
-        data = {
-            "blue": "<blue>",
-            "red": "<red>",
-            "yellow": "<yellow>",
-            "cyan": "<cyan>",
-            "bold magenta": "<bold magenta>",
-            "reset": "<reset>",
-            "default": "<reset>",
-            "unchanged": "<unchanged>",
-        }
-        return data.get(name, "")
+from tests.conftest import Colors
 
 
 def test_color_list():

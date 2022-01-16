@@ -7,20 +7,12 @@ from typing import Tuple
 import pytest
 
 from strec.colorizers.yaml import YamlColorizer
-from strec.themes.ansi import ANSI
-
-
-class TestColors(ANSI):
-
-    DATA = {
-        "blue": "<blue>",
-        "reset": "<reset>",
-    }
+from tests.conftest import Colors
 
 
 @pytest.fixture
 def colorizer_fixture():
-    colors = TestColors
+    colors = Colors
     conf = {
         "root": [
             {

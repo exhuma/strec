@@ -9,6 +9,5 @@
     "python.analysis.typeCheckingMode": "strict",
     "files.exclude": {
         "**/__pycache__": true
-    },
-    "python.linting.mypyEnabled": true
+    }
 }
