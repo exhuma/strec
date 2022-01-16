@@ -1,0 +1,4 @@
+---
+root:
+    - match: '(fox)'
+      replace: '{blue}\1{reset}'

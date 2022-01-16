@@ -30,7 +30,7 @@ def test_config_names() -> None:
     Ensure that all test contain the name of the config that we are testing
     """
     discovered_tests = tst.discover("tests/configs")
-    expected_configs = {"conf.simple"}
+    expected_configs = {"conf.simple", "example.yml"}
     discovered_configs = {item.config_name for item in discovered_tests}
     assert expected_configs == discovered_configs
 
