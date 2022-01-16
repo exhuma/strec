@@ -3,6 +3,7 @@ from argparse import ArgumentParser, Namespace
 from os.path import basename
 from typing import IO, List, Optional
 
+import strec.testing as testing
 from strec.colorizers import Colorizer
 from strec.core import create_pty, create_stdin, process_lines
 from strec.themes.ansi import ANSI
@@ -19,6 +20,12 @@ def parse_args(args: Optional[List[str]]) -> Namespace:
             "calling a process in a subshell, applying coloring rules via "
             "regexes and writing back the colorised output"
         )
+    )
+    parser.add_argument(
+        "--test",
+        metavar="PATH",
+        default="",
+        help=("Execute tests against config files inside PATH"),
     )
     parser.add_argument(
         "-c",
@@ -49,6 +56,10 @@ def parse_args(args: Optional[List[str]]) -> Namespace:
 
 def run(stream: IO[str], args: Optional[List[str]]) -> None:
     parsed_args = parse_args(args)
+
+    if parsed_args.test != "":
+        testing.run(parsed_args.test)
+        return
 
     if parsed_args.cmd:
         cmd = basename(parsed_args.cmd[0])
