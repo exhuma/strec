@@ -1,1 +1,1 @@
-recursive-include configs *.yml
+recursive-include strec/configs *.yml

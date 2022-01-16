@@ -62,7 +62,11 @@ setup(
     data_files=[
         (
             CONF_TARGET,
-            [join("configs", _) for _ in os.listdir("configs") if _[-1] != "~"],
+            [
+                join("strec/configs", _)
+                for _ in os.listdir("strec/configs")
+                if _[-1] != "~"
+            ],
         )
     ],
     packages=find_packages(exclude=["tests.*", "tests"]),

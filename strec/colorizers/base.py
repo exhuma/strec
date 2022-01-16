@@ -21,7 +21,7 @@ if "STREC_CONFIG_PATH" in environ:
     CONF_LOCATIONS.insert(0, environ["STREC_CONFIG_PATH"])
 
 # Add the installation folder to the config search path
-CONF_LOCATIONS.append(pkg_resources.resource_filename("strec", "../configs"))
+CONF_LOCATIONS.append(pkg_resources.resource_filename("strec", "configs"))
 
 
 def find_conf(file_or_app_name: str) -> str:
